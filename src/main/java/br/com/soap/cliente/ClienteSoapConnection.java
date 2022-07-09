@@ -1,7 +1,10 @@
 package br.com.soap.cliente;
 
+import br.com.correios.bsb.sigep.master.bean.cliente.AtendeCliente;
+
 import javax.enterprise.context.ApplicationScoped;
 import javax.xml.namespace.QName;
+import javax.xml.ws.Service;
 import java.net.MalformedURLException;
 import java.net.URL;
 
@@ -25,5 +28,15 @@ public class ClienteSoapConnection {
 
 
     }
+
+
+
+    public AtendeCliente connectClient(){
+        Service serviceCorreio = Service.create(WSDLURL, Q_NAME);
+        AtendeCliente correios = serviceCorreio.getPort(AtendeCliente.class);
+        return correios;
+    }
+
+
 
 }
